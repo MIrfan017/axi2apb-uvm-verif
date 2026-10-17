@@ -176,7 +176,7 @@ The testbench uses a **dual-agent UVM environment**:
 
 ```bash
 # 1. Clone the repo
-git clone <repo-url>
+git clone https://github.com/MIrfan017/axi2apb-uvm-verif.git
 cd axi2apb_uvm
 
 # 2. Compile + run the directed test
