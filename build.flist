@@ -1,0 +1,33 @@
+// build.flist : include dirs + sources for the AXI->APB UVM testbench
+// ORDER MATTERS: interfaces -> RTL -> UVM package -> top
+
+// ---- include directories
++incdir+tb
++incdir+uvm
++incdir+sequences
++incdir+tests
++incdir+assertions
++incdir+coverage
+
+// ---- interfaces (must come before tb_top and before anything that uses them)
+tb/axi_bus.sv
+tb/apb_bus.sv
+
+// ---- RTL: dependency-safe order
+// fifo -> axi_single_slice -> {aw,ar,w,r,b}_buffer -> axi2apb -> wrap
+rtl/fifo.sv
+rtl/axi_single_slice.sv
+rtl/axi_aw_buffer.sv
+rtl/axi_ar_buffer.sv
+rtl/axi_w_buffer.sv
+rtl/axi_r_buffer.sv
+rtl/axi_b_buffer.sv
+rtl/axi2apb.sv
+rtl/axi2apb_64_32.sv
+rtl/axi2apb_wrap.sv
+
+// ---- UVM package (pulls in all uvm/, sequences/, tests/ sources via `include)
+uvm/axi_apb_pkg.sv
+
+// ---- top-level testbench
+tb/tb_top.sv

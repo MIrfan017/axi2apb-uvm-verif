@@ -1,0 +1,27 @@
+Design Module List
+
+Total Module Definition Coverage Summary 
+SCORE  LINE   COND   TOGGLE BRANCH ASSERT 
+ 59.16  78.87  54.55  77.18  65.22  20.00 
+
+
+Total modules in report: 16
+-------------------------------------------------------------------------------
+SCORE  LINE   COND   TOGGLE BRANCH ASSERT NAME                                                                                                                                                                      
+  0.00 --     --     --     --       0.00 uvm_pkg                                                                                                                                                                   
+  0.00   0.00 --     --     --     --     $unit::/usr/synopsys/vcs-L-2016.06//etc/uvm-1.2/macros/uvm_callback_defines.svh::/usr/synopsys/vcs-L-2016.06//etc/uvm-1.2/macros/uvm_deprecated_defines.svh...@1693430853 
+ 31.67  33.33 --     --      30.00 --     uvm_custom_install_recording                                                                                                                                              
+ 50.00 --     --      50.00 --     --     axi2apb_wrap                                                                                                                                                              
+ 59.25  80.95  54.55  79.49  81.25   0.00 fifo                                                                                                                                                                      
+ 59.70 --     --      59.70 --     --     axi_aw_buffer                                                                                                                                                             
+ 59.70 --     --      59.70 --     --     axi_ar_buffer                                                                                                                                                             
+ 70.24  85.71 --      75.00  50.00 --     tb_top                                                                                                                                                                    
+ 73.28 --     --      73.28 --     --     AXI_BUS                                                                                                                                                                   
+ 81.44  92.19 --      79.91  72.22 --     axi2apb                                                                                                                                                                   
+ 81.45 --     --      81.45 --     --     axi_single_slice                                                                                                                                                          
+ 83.33 --     --      83.33 --     --     axi_b_buffer                                                                                                                                                              
+ 94.62 --     --      94.62 --     --     axi_r_buffer                                                                                                                                                              
+ 95.81 --     --      95.81 --     --     axi_w_buffer                                                                                                                                                              
+ 96.60 --     --      96.60 --     --     APB_BUS                                                                                                                                                                   
+100.00 --     --     --     --     100.00 vcs_paramclassrepository                                                                                                                                                  
+
