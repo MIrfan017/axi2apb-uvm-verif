@@ -289,7 +289,7 @@ Crosses: `x_dir_waits`, `x_dir_slverr`.
 ### Code coverage
 
 Collected via VCS `-cm line+cond+tgl+assert+branch`. The following are
-excluded from the final report (justified in [Known Limitations](#known-limitations)):
+excluded from the final report:
 
 - UVM library (not part of the DUT)
 - `fifo.sv` `FALL_THROUGH` branch (dead code — `FALL_THROUGH=0` in all instances)
