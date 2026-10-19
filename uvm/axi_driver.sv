@@ -27,7 +27,7 @@ class axi_driver extends uvm_driver #(axi_seq_item);
     end
   endtask
 
-  // ---------------------------------------------------------------- init ----
+  // --------------------------- init ----
   task init_signals();
     vif.master_cb.aw_id     <= '0;
     vif.master_cb.aw_addr   <= '0;
@@ -66,7 +66,7 @@ class axi_driver extends uvm_driver #(axi_seq_item);
     vif.master_cb.r_ready   <= 1'b0;
   endtask
 
-  // ---------------------------------------------------------------- write ---
+  //------------------------- write ---
   task drive_write(axi_seq_item t);
     // present AW and W together (this RTL requires both valid in IDLE)
     fork
@@ -78,10 +78,10 @@ class axi_driver extends uvm_driver #(axi_seq_item);
         vif.master_cb.aw_len    <= t.len;
         vif.master_cb.aw_size   <= t.size;
         vif.master_cb.aw_burst  <= t.burst;
-        vif.master_cb.aw_prot   <= t.prot;      // <-- NEW
-        vif.master_cb.aw_cache  <= t.cache;     // <-- NEW
-        vif.master_cb.aw_qos    <= t.qos;       // <-- NEW
-        vif.master_cb.aw_region <= t.region;    // <-- NEW
+        vif.master_cb.aw_prot   <= t.prot;      
+        vif.master_cb.aw_cache  <= t.cache;     
+        vif.master_cb.aw_qos    <= t.qos;       
+        vif.master_cb.aw_region <= t.region;    
         vif.master_cb.aw_user   <= t.user;
         vif.master_cb.aw_valid  <= 1'b1;
         // handshake happens on the posedge where READY is sampled high;
@@ -103,7 +103,6 @@ class axi_driver extends uvm_driver #(axi_seq_item);
       end
     join
 
-    // ---- optional response back-pressure
     repeat (t.resp_delay) @(vif.master_cb);
 
     // ---- B channel: drive b_ready via clocking block, sample payload via raw vif
@@ -115,7 +114,7 @@ class axi_driver extends uvm_driver #(axi_seq_item);
     vif.master_cb.b_ready <= 1'b0;
   endtask
 
-  // ----------------------------------------------------------------- read ---
+  // ----------------- read ---
   task drive_read(axi_seq_item t);
     @(vif.master_cb);
     vif.master_cb.ar_id     <= t.id;
@@ -123,16 +122,15 @@ class axi_driver extends uvm_driver #(axi_seq_item);
     vif.master_cb.ar_len    <= t.len;
     vif.master_cb.ar_size   <= t.size;
     vif.master_cb.ar_burst  <= t.burst;
-    vif.master_cb.ar_prot   <= t.prot;      // <-- NEW
-    vif.master_cb.ar_cache  <= t.cache;     // <-- NEW
-    vif.master_cb.ar_qos    <= t.qos;       // <-- NEW
-    vif.master_cb.ar_region <= t.region;    // <-- NEW
+    vif.master_cb.ar_prot   <= t.prot;      
+    vif.master_cb.ar_cache  <= t.cache;     
+    vif.master_cb.ar_qos    <= t.qos;       
+    vif.master_cb.ar_region <= t.region;    
     vif.master_cb.ar_user   <= t.user;
     vif.master_cb.ar_valid  <= 1'b1;
     do @(vif.master_cb); while (vif.master_cb.ar_ready !== 1'b1);
     vif.master_cb.ar_valid  <= 1'b0;
 
-    // ---- optional response back-pressure
     repeat (t.resp_delay) @(vif.master_cb);
 
     // ---- R channel: drive r_ready via clocking block, sample payload via raw vif
